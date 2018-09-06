@@ -1,6 +1,7 @@
 'use strict';
 const path = require('path');
 const electron = require('electron');
+const {sendAction} = require('./util');
 
 const {app} = electron;
 let tray = null;
@@ -25,6 +26,13 @@ exports.create = win => {
 			label: 'Toggle',
 			click() {
 				toggleWin();
+			}
+		},
+		{
+			label: 'New Message',
+			click() {
+				win.focus();
+				sendAction('new-conversation');
 			}
 		},
 		{
